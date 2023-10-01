@@ -1,0 +1,14 @@
+.containerNavibar{
+    height: 60px;
+    background-color:#28302a;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+}
+
+.link {
+    color: white;
+    text-decoration: none;
+    margin: 0px 20px 0px 20px;
+}
