@@ -5,34 +5,45 @@ import { useState } from "react";
 import style from './signIn.module.css'
 
 //firebase
-import {createUserWithEmailAndPassword } from "firebase/auth";
+import {signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup} from "firebase/auth";
 import { auth } from '../Firebase/config'
 
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Login = () => {
+
+    const provider = new GoogleAuthProvider();
 
     const [ emailUser, setEmailUser ] = useState("")
     const [ passwordUser, setPasswordUser ] = useState("")
     const [ messageToUser, setMessageToUser ] = useState("")
+
+    const handleAccessWithGooogle = async (e) => {
+        console.log(e)
+        const result = await signInWithPopup(auth, provider)
+         GoogleAuthProvider.credentialFromResult(result);
+    }
     
 
     const handleSutmitSignIn = async (e) => {
         e.preventDefault()
 
         try {
-         const responseUser = await createUserWithEmailAndPassword(auth, emailUser, passwordUser)
-            
+         const response = await signInWithEmailAndPassword(auth, emailUser, passwordUser)
+
+         if(response) {
+            const navigate = useNavigate()
+            navigate('/')
+         }
+
         } catch (error) {
 
             if(error.message.includes('email')){
                 setMessageToUser('Invalid email format')
             }
-            if(error.message.includes('password')){
-                setMessageToUser('Password should be at least 6 characters')
-            }
-            if(error.message.includes('email-already-in-use')){
-                setMessageToUser('User email already in use')
+
+            if(error.message.includes('invalid-login-credentials')){
+                setMessageToUser('Credentials invalid, try again.')
             }
             console.log(error)
         }
@@ -42,8 +53,8 @@ const Login = () => {
     }
 
     return (
-        <div className={style.containerSignIn}>
-            <h1 className={style.h1}>SIGN-IN</h1>
+        <div className='allContainers'>
+            <h1>SIGN-IN</h1>
             <form onSubmit={handleSutmitSignIn}>
                 <label htmlFor="email">EMAIL:</label>
                 <input
@@ -69,7 +80,10 @@ const Login = () => {
                 </input>
                 <button className="btn">SUBMIT</button>
             </form>
-            <NavLink to='/signUp'>CREATE NEW ACCOUNT</NavLink>
+            <div className={style.access}>
+                <NavLink to='/signUp'>CREATE NEW ACCOUNT</NavLink>
+                <NavLink onClick={handleAccessWithGooogle} >ACCESS WITH GOOGLE</NavLink>
+            </div>
             {messageToUser && <p className="warningMessage">{messageToUser}</p>}
         </div>
     )

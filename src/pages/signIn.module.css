@@ -8,3 +8,10 @@
    align-items: center;
   
 }
+
+.access {
+    width: 80%;
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+}

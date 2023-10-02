@@ -3,7 +3,8 @@ import style from './signUp.module.css'
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../Firebase/config'
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router';
 
 const SignUp = () => {
 
@@ -25,6 +26,11 @@ const SignUp = () => {
         try {
             const responseUser = await createUserWithEmailAndPassword(auth, email, password)
 
+            if(responseUser){
+                const navigate = useNavigate()
+                navigate('/')
+            }
+
            if(responseUser.operationType){
             setIsUserCreated(true)
             setConfirmCreateUserMessage('User created.')
@@ -45,7 +51,6 @@ const SignUp = () => {
                if(error.message.includes('email-already-in-use')){
                    setMessageToUser('User email already in use')
                }
-               console.log(error)
            }
 
            setConfirmPassword("")
@@ -54,7 +59,7 @@ const SignUp = () => {
     }
 
     return (
-        <div className={style.containerSignup}>
+        <div className='allContainers'>
             <h1>SIGN-UP</h1>
             <p className={style.p}>HELP THE WORLD GROW WITH NEW IDEAS</p>
             <form onSubmit={handleSignUp}>
