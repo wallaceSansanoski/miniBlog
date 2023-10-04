@@ -1,0 +1,41 @@
+.containerShowContent {
+    max-width: 600px;
+    min-height: 83vh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.searchContainer{
+    display: flex;
+    margin-top: 30px;
+    height: 40px;
+}
+
+.inputSearch{
+    margin: 0px;
+    max-height: 29px;
+} 
+
+.buttonSearch {
+    width: 100px;
+    height: 30px;
+    background-color: transparent;
+    border: 1px solid black;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+.formSearch{
+    display: flex;
+    flex-direction: row;
+    margin:0;
+    width: 100%;
+}

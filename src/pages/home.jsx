@@ -1,10 +1,36 @@
+import { collection, query, where, getDocs, onSnapshot } from "firebase/firestore";
+import { db } from '../Firebase/config'
+import style from './home.module.css'
+import { useState, useEffect } from "react";
+import DisplaySearch from "../Components/DisplaySearch";
+
 const Home = () => {
+
+    const [searchValue, setSearchValue] = useState("")
+
+    const handleSearchContent = (e) => {
+        e.preventDefault()
+    }   
+
     return (
-        <div className="allContainers">
-            <h1>MEU AMOR QUE EU AMOOO MUIITOOO</h1>
-            <p>ISSO É SO UM TESTING HEHEHE, TEAMOOOOO</p>
-            <p>SE QUIZER USAR TEM QUE CADASTRAR OU PODE USAR SUA CONTA GOOGLE, BJO TE  AMO CABEÇA DE MAÇA ; )</p>
-            <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y29yYSVDMyVBNyVDMyVBM298ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60"></img>
+        <div className={style.containerShowContent}>
+            <h1>SEE ALL POST </h1>
+            <div className={style.searchContainer}>
+                <form className={style.formSearch} onSubmit={handleSearchContent}>
+                    <input
+                        className={style.inputSearch}
+                        name="search"
+                        placeholder="LOOKING FOR SOMETHIGN ELSE"
+                        value={searchValue}
+                        onChange={(e) => setSearchValue(e.target.value)}
+                    ></input>
+                    <button className={style.buttonSearch} >SEARCH</button>
+                </form>
+            </div>
+            {
+                
+
+            }
         </div>
     )
 }

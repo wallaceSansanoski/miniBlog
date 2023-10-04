@@ -11,7 +11,7 @@ const About = () => {
             <h1 className={style.h1}>ABOUT THIS PROJECT</h1>
             <p>THIS PROJECT WAS CREATED TO HELP DEVELOPERS GET WELL IN INTERVIEW JOBS</p>
             <span>START NOW SHARING NEW IDEAS</span>
-            <NavLink to={userAuth ? '/' : '/sign-in'} className='btn'>SHARE</NavLink>
+            <NavLink to={userAuth ? '/create' : '/sign-in'} className='btn'>SHARE</NavLink>
             <p className={style.usedFeatures}>THIS PROJECT WAS DEVELOPED WITH  FIREBASE IN BACK-END AND REACT JS IN FRONT-END</p>
        </div>
     )
