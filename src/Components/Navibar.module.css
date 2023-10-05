@@ -31,8 +31,10 @@
     right: 0;
     flex-direction: column;
     justify-content: space-evenly;
+    align-items: center;
     background-color: #28302a;
     height: 30em;
+    width: 13em;
 }
 .closeMenubar{
     position: absolute;
