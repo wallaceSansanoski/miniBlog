@@ -1,11 +1,14 @@
 import { signOut } from "firebase/auth";
 import { auth } from "../Firebase/config";
+import { useNavigate } from "react-router";
 
 
 const Logout = () => {
+  
+  const navigate = useNavigate()
 
     signOut(auth).then(() => {
-        // Sign-out successful.
+        navigate('/')
       }).catch((error) => {
         // An error happened.
       });
