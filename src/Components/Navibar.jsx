@@ -8,7 +8,7 @@ const Navibar = () => {
 
     const { userAuth } = useContext(UserInfoContext)
     const [hamburgerToggle, setHamburguerToggle] = useState(false)
-    const [iconCloseMenu, setIconCloseMenu] = useState(false)
+    const [iconCloseMenu, setIconCloseMenu] = useState(true)
 
 
     const handleClickMenu = () => {
@@ -17,40 +17,52 @@ const Navibar = () => {
     }
 
     const handleClickOpenOrCloseMenu = () => {
+
+        if(window.screen.width >= 400){
+            setIconCloseMenu(true)
+            return 
+        }
+
         setIconCloseMenu(!iconCloseMenu)
         setHamburguerToggle(!hamburgerToggle)
     }
-
+    
     return (
         <div className={style.containerNavibar}>
             <ul 
             onClick={handleClickOpenOrCloseMenu}
-            className={`${iconCloseMenu ? style.closeUl : style.ul} ${hamburgerToggle ? style.showMenu : style.hideMenu}`} 
+            className={`${style.ul}  ${hamburgerToggle ? style.showMenu  : style.hideMenu} }`}
             >
                 <li className={style.closeMenubar}>
                     <span className={style.x}>X</span>
                 </li>
+
                 <li className={style.li}>
                     <NavLink className={style.link} to='/'>HOME</NavLink>
                 </li>
+
                 {userAuth &&
                     <li className={style.li}>
                         <NavLink className={style.link} to='/about'>DASHBOARD</NavLink>
                     </li>
                 }
+
                 {userAuth &&
                     <li className={style.li}>
                         <NavLink className={style.link} to='/create'>CREATE</NavLink>
                     </li>
                 }
+
                 {!userAuth &&
                     <li className={style.li}>
                         <NavLink className={style.link} to='/sign-in'>SIGN IN</NavLink>
                     </li>
                 }
+
                 <li className={style.li}>
                     <NavLink className={style.link} to='/about'>ABOUT</NavLink>
                 </li>
+
                 {userAuth &&
                     <li className={style.li}>
                         <NavLink className={style.link} to='/logout'>LOGOUT</NavLink>
