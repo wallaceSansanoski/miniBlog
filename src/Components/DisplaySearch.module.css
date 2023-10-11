@@ -1,0 +1,36 @@
+.containerContent {
+    text-transform: capitalize;
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+.containerImage{
+    max-height: 300px;
+    max-width: 600px;
+    background-size: cover;
+}
+
+.containerTags {
+    display: flex;
+    flex-direction: row;
+    margin: 20px 0px ;
+}
+.tag {
+    margin-right: 10px;
+}
+
+.containerContent::after {
+    content: '';
+    margin: 0 auto;
+    width: 150px;
+    height: 1px ;
+    background-color: black;
+}
+
+@media (min-width : 400px){
+    .containerContent::after {
+        width: 300px;
+    }
+}

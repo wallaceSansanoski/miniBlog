@@ -1,14 +1,39 @@
-import { collection, query, where, getDocs, onSnapshot } from "firebase/firestore";
+//firebase
+import { collection, query, onSnapshot, orderBy } from "firebase/firestore";
 import { db } from '../Firebase/config'
+
+///css style
 import style from './home.module.css'
-import { useState} from "react";
+
+/// react component and  hooks
+import { useState, useEffect} from "react";
 import DisplaySearch from "../Components/DisplaySearch";
+
+///react router
 import { Link } from "react-router-dom";
 
 const Home = () => {
 
     const [searchValue, setSearchValue] = useState("")
     const [ posts, setPosts ] = useState([])
+
+    useEffect(() => {
+
+        function fetchContent() {
+
+            const q = query(collection(db, "posts"), orderBy('createAt'));
+            onSnapshot(q, (querySnapshot) => {
+                setPosts(
+                    querySnapshot.docs.map(post => ({
+                        uid  : post.id,
+                        ...post.data()
+                    }))
+                )
+            })  
+        }
+
+        fetchContent()
+    }, [])
 
     const handleSearchContent = (e) => {
         e.preventDefault()
@@ -29,6 +54,11 @@ const Home = () => {
                     <button className={style.buttonSearch} >SEARCH</button>
                 </form>
             </div>
+            {
+                posts.map(post => 
+                 (<DisplaySearch key={post.uid} post={post}/>)
+                )
+            }
             {  posts && posts.length === 0 && (
                 <div className={style.containerNotFoundPost}>
                     <h2>NOT FOUND ANY POST YET :(</h2>
