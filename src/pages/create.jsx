@@ -1,11 +1,13 @@
-import { useState, useReducer } from "react"
-import { db } from "../Firebase/config"
+import { useState, useReducer, useContext} from "react"
+import { UserInfoContext } from "../Context/ContextUserInfo";
+import { db, auth } from "../Firebase/config"
 import { collection, addDoc, Timestamp } from "firebase/firestore";
 import { useNavigate } from "react-router";
 
 const Create = () => {
 
     const navigate = useNavigate()
+    const { userAuth } = useContext(UserInfoContext)
 
     const [ title, setTitle ] = useState("")
     const [ content, setContent ] = useState("")
@@ -73,7 +75,8 @@ const Create = () => {
                 content,
                 image,
                 tagsArrays,
-                createAt: Timestamp.now()
+                createAt: Timestamp.now(),
+                displayName : userAuth.displayName
             });
 
 

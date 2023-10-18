@@ -1,12 +1,12 @@
 //firebase
 import { collection, query, onSnapshot, orderBy } from "firebase/firestore";
-import { db } from '../Firebase/config'
+import { db, auth } from '../Firebase/config'
 
 ///css style
 import style from './home.module.css'
 
 /// react component and  hooks
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import DisplaySearch from "../Components/DisplaySearch";
 
 ///react router
@@ -15,29 +15,57 @@ import { Link } from "react-router-dom";
 const Home = () => {
 
     const [searchValue, setSearchValue] = useState("")
-    const [ posts, setPosts ] = useState([])
+    const [posts, setPosts] = useState([])
+    const [loading, setLoading] = useState(false)
+    const [filteredPostes, setFilteredPosts] = useState([])
+    const [messageIfNotFoundPostFiltered, setMessageIfNotFoundPostFiltered ] = useState(true)
 
     useEffect(() => {
 
-        function fetchContent() {
+        async function fetchContent() {
 
-            const q = query(collection(db, "posts"), orderBy('createAt'));
-            onSnapshot(q, (querySnapshot) => {
-                setPosts(
-                    querySnapshot.docs.map(post => ({
-                        uid  : post.id,
-                        ...post.data()
-                    }))
-                )
-            })  
+            setLoading(true)
+            const q = await query(collection(db, "posts"), orderBy('createAt'));
+
+            try {
+                await onSnapshot(q, (querySnapshot) => {
+                    setPosts(
+                        querySnapshot.docs.map(post => ({
+                            uid: post.id,
+                            ...post.data()
+                        }))
+                    )
+                    setLoading(false)
+                })
+
+            } catch (error) {
+                console.log(error)
+            }
         }
-
         fetchContent()
     }, [])
 
+
     const handleSearchContent = (e) => {
         e.preventDefault()
-    }   
+
+        const inputValue = (e.target.search.value).toLowerCase()
+
+        let hasPostFiltered = posts.filter((post) => post.tagsArrays.includes(inputValue))
+
+        setFilteredPosts(hasPostFiltered)
+
+        if(hasPostFiltered.length === 0) {
+            setMessageIfNotFoundPostFiltered(false)
+        }
+    }
+
+    const handleClickMessageNotFoundPostFiltered = (e) => {
+        if(['SPAN','DIV', 'P'].includes(e.target.tagName)){
+            setMessageIfNotFoundPostFiltered(true)
+        }
+    }
+
 
     return (
         <div className={style.containerShowContent}>
@@ -49,17 +77,38 @@ const Home = () => {
                         name="search"
                         placeholder="LOOKING FOR SOMETHIGN ELSE"
                         value={searchValue}
-                        onChange={(e) => setSearchValue(e.target.value)}
+                        onChange={(e) => {
+                            setSearchValue(e.target.value)
+                            setFilteredPosts([])
+                            setMessageIfNotFoundPostFiltered(true)
+                        }}
                     ></input>
                     <button className={style.buttonSearch} >SEARCH</button>
                 </form>
             </div>
-            {
-                posts.map(post => 
-                 (<DisplaySearch key={post.uid} post={post}/>)
+            {!messageIfNotFoundPostFiltered ?
+                (
+                    <div className={style.notFoundFilteredPost} onClick={handleClickMessageNotFoundPostFiltered}>
+                        <span>x</span>
+                        <p>NOT FOUND POST RELATE WITH SEARCH</p>
+                    </div>
+                )
+                :
+                (
+                    ("")
                 )
             }
-            {  posts && posts.length === 0 && (
+            {loading && <h2>LOADING...</h2>}
+            {!loading && (filteredPostes.length > 0 ?
+                (filteredPostes.map(post =>
+                    (<DisplaySearch key={post.uid} post={post} />))
+                ) :
+                (posts.map(post =>
+                    (<DisplaySearch key={post.uid} post={post} />))
+                )
+            )
+            }
+            {posts.length === 0 && (
                 <div className={style.containerNotFoundPost}>
                     <h2>NOT FOUND ANY POST YET :(</h2>
                     <Link to='/create'>CREATE THE FIRST ONE</Link>

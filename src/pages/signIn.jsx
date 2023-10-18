@@ -18,10 +18,17 @@ const Login = () => {
     const [ passwordUser, setPasswordUser ] = useState("")
     const [ messageToUser, setMessageToUser ] = useState("")
 
-    const handleAccessWithGooogle = async (e) => {
-        console.log(e)
-        const result = await signInWithPopup(auth, provider)
-         GoogleAuthProvider.credentialFromResult(result);
+    const handleAccessWithGooogle = async () => {
+        
+        try {
+
+            const result = await signInWithPopup(auth, provider)
+            GoogleAuthProvider.credentialFromResult(result);
+
+        } catch (error) {
+            setMessageToUser("The email of the user's account used.")
+        }
+
     }
     
 
@@ -45,7 +52,6 @@ const Login = () => {
             if(error.message.includes('invalid-login-credentials')){
                 setMessageToUser('Credentials invalid, try again.')
             }
-            console.log(error)
         }
 
         setEmailUser("")

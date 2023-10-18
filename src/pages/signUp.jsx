@@ -6,56 +6,58 @@ import { auth } from '../Firebase/config'
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
+
 const SignUp = () => {
 
-    const [email, setEmail ] = useState("")
-    const [password, setPassword ] = useState("")
+    const [nameUser, setName] = useState("")
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
-    const [ messageToUser, setMessageToUser ] = useState("")
-    const [ confirmCreateUserMessage, setConfirmCreateUserMessage ] = useState("")
-    const [isUserCreated, setIsUserCreated ] = useState(false)
+    const [messageToUser, setMessageToUser] = useState("")
+    const [confirmCreateUserMessage, setConfirmCreateUserMessage] = useState("")
+    const [isUserCreated, setIsUserCreated] = useState(false)
 
     const handleSignUp = async (e) => {
         e.preventDefault()
 
-        if(password !== confirmPassword){
+        if (password !== confirmPassword) {
             setMessageToUser("Password should match.")
-            return 
+            return
         }
 
         try {
             const responseUser = await createUserWithEmailAndPassword(auth, email, password)
 
-            if(responseUser){
+            if (responseUser) {
                 const navigate = useNavigate()
                 navigate('/')
             }
 
-           if(responseUser.operationType){
-            setIsUserCreated(true)
-            setConfirmCreateUserMessage('User created.')
+            if (responseUser.operationType) {
+                setIsUserCreated(true)
+                setConfirmCreateUserMessage('User created.')
 
-            setTimeout(() => {
-                setIsUserCreated(false)
-            }, 4000)
-           }
-               
-           } catch (error) {
-   
-               if(error.message.includes('email')){
-                   setMessageToUser('Invalid email format')
-               }
-               if(error.message.includes('password')){
-                   setMessageToUser('Password should be at least 6 characters')
-               }
-               if(error.message.includes('email-already-in-use')){
-                   setMessageToUser('User email already in use')
-               }
-           }
+                setTimeout(() => {
+                    setIsUserCreated(false)
+                }, 4000)
+            }
 
-           setConfirmPassword("")
-           setEmail("")
-           setPassword("")
+        } catch (error) {
+
+            if (error.message.includes('email')) {
+                setMessageToUser('Invalid email format')
+            }
+            if (error.message.includes('password')) {
+                setMessageToUser('Password should be at least 6 characters')
+            }
+            if (error.message.includes('email-already-in-use')) {
+                setMessageToUser('User email already in use')
+            }
+        }
+
+        setConfirmPassword("")
+        setEmail("")
+        setPassword("")
     }
 
     return (
@@ -63,6 +65,19 @@ const SignUp = () => {
             <h1>SIGN-UP</h1>
             <p className={style.p}>HELP THE WORLD GROW WITH NEW IDEAS</p>
             <form onSubmit={handleSignUp}>
+                <label htmlFor='name'>YOUR NAME</label>
+                <input
+                    type="text"
+                    name="name"
+                    value={nameUser}
+                    placeholder="TYPE YOUR NAME"
+                    required
+                    onChange={(e) => {
+                        setName(e.target.value)
+                        setMessageToUser("")
+                    }}>
+
+                </input>
                 <label htmlFor='email'>EMAIL</label>
                 <input
                     type="text"

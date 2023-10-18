@@ -19,6 +19,7 @@
 }
 .tag {
     margin-right: 10px;
+    font-weight: bolder;
 }
 
 .containerContent::after {
@@ -28,6 +29,23 @@
     height: 1px ;
     background-color: black;
 }
+
+.btnReadPost {
+    width: 100px;
+    height: 30px;
+    background-color: #27bc58;
+    font-size: 15px;
+    margin-top: 30px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    border: none;
+}
+
 
 @media (min-width : 400px){
     .containerContent::after {

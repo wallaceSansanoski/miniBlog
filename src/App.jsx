@@ -24,30 +24,29 @@ import { onAuthStateChanged } from "firebase/auth"
 
 ///hook
 
-import { useState } from "react"
+import { useState} from "react"
 
 function App ()  {
 
-    const [userAuth, setUserAuth ] = useState("")
-
+    const [ userAuth, setUserAuth ] = useState("")
+ 
     onAuthStateChanged(auth, (user) => {
         setUserAuth(user)
     })
 
-
     return (
         <>
             <BrowserRouter>
-                <UserInfoContext.Provider value={{userAuth}}>
+                <UserInfoContext.Provider value={{ userAuth }}>
                     <Navibar />
                     <div className="container">
                         <Routes>
                             <Route path="/" element={<Home />} />
-                            <Route path="/create" element={userAuth ? <Create/> : <Navigate to='/signup'/>} />
-                            <Route path="/sign-in" element={userAuth ? <Navigate to='/'/> : <Login />} />
-                            <Route path="/signup" element={userAuth ? <Navigate to='/'/> : <SignUp />} />
+                            <Route path="/create" element={userAuth ? <Create /> : <Navigate to='/sign-in' />} />
+                            <Route path="/sign-in" element={userAuth ? <Navigate to='/' /> : <Login />} />
+                            <Route path="/signup" element={userAuth ? <Navigate to='/' /> : <SignUp />} />
                             <Route path="/about" element={<About />} />
-                            <Route path="/logout" element={<Logout/>}/>
+                            <Route path="/logout" element={<Logout />} />
                             <Route path="*" element={<NotFound />} />
                         </Routes>
                     </div>
