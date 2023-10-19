@@ -76,7 +76,7 @@ const Create = () => {
                 image,
                 tagsArrays,
                 createAt: Timestamp.now(),
-                displayName : userAuth.displayName
+                userID : auth.currentUser.uid
             });
 
 
@@ -110,7 +110,7 @@ const Create = () => {
 
     return (
         <div className="allContainers">
-            <h1 style={{ color: '#b5b5b5' }}>EVERYTHING BEGINS WITH AN IDEA.</h1>
+            <h1 style={{ color: '#b5b5b5' }}>EVERYTHING BEGIN WITH AN IDEA.</h1>
             <form onSubmit={handleCreatePost}>
                 <label htmlFor="title">TITLE </label>
                 <input

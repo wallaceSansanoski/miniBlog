@@ -14,7 +14,6 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
 
-    const [searchValue, setSearchValue] = useState("")
     const [posts, setPosts] = useState([])
     const [loading, setLoading] = useState(false)
     const [filteredPostes, setFilteredPosts] = useState([])
@@ -58,6 +57,7 @@ const Home = () => {
         if(hasPostFiltered.length === 0) {
             setMessageIfNotFoundPostFiltered(false)
         }
+        
     }
 
     const handleClickMessageNotFoundPostFiltered = (e) => {
@@ -65,7 +65,6 @@ const Home = () => {
             setMessageIfNotFoundPostFiltered(true)
         }
     }
-
 
     return (
         <div className={style.containerShowContent}>
@@ -76,9 +75,7 @@ const Home = () => {
                         className={style.inputSearch}
                         name="search"
                         placeholder="LOOKING FOR SOMETHIGN ELSE"
-                        value={searchValue}
-                        onChange={(e) => {
-                            setSearchValue(e.target.value)
+                        onChange={() => {
                             setFilteredPosts([])
                             setMessageIfNotFoundPostFiltered(true)
                         }}

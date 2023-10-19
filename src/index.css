@@ -100,3 +100,6 @@ input::placeholder {
     border: none;
     color: white;
 }
+p{
+    text-transform: uppercase;
+}

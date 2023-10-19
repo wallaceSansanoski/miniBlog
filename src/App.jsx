@@ -13,6 +13,7 @@ import Footer from "./Components/Footer"
 import SignUp from "./pages/signUp"
 import Logout from "./pages/logout"
 import Create from "./pages/create"
+import Dashboard from "./pages/dashboard"
 
 //CSS
 import './App.css'
@@ -45,6 +46,7 @@ function App ()  {
                             <Route path="/create" element={userAuth ? <Create /> : <Navigate to='/sign-in' />} />
                             <Route path="/sign-in" element={userAuth ? <Navigate to='/' /> : <Login />} />
                             <Route path="/signup" element={userAuth ? <Navigate to='/' /> : <SignUp />} />
+                            <Route path="/dashboard" element={userAuth ? <Dashboard/> : <Navigate to={"/"}/>} />
                             <Route path="/about" element={<About />} />
                             <Route path="/logout" element={<Logout />} />
                             <Route path="*" element={<NotFound />} />
