@@ -57,7 +57,6 @@ const Home = () => {
         if(hasPostFiltered.length === 0) {
             setMessageIfNotFoundPostFiltered(false)
         }
-        
     }
 
     const handleClickMessageNotFoundPostFiltered = (e) => {

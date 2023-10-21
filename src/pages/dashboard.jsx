@@ -52,7 +52,7 @@ const Dashboard = () => {
                 </div>
                 <div>
                     {posts.map(post  =>  (
-                        <DashboardItem key={post.data().title} posts={post.data()}/>
+                        <DashboardItem key={post.data().title} posts={post}/>
                     ))}
                 </div>
             </div>

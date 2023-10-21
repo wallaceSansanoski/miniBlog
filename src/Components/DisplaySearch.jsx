@@ -2,7 +2,7 @@ import style  from './DisplaySearch.module.css'
 
 const DisplaySearch = ({post}) => {
 
-    const {uid, title, content,displayName, createAt, tagsArrays, image} = post
+    const {title, displayName, tagsArrays, image} = post
 
     return (
         <div className={style.containerContent}>
