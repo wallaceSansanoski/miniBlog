@@ -103,3 +103,10 @@ input::placeholder {
 p{
     text-transform: uppercase;
 }
+
+.link {
+    
+    color: white;
+    text-decoration: none;
+    margin: 0px ;
+}

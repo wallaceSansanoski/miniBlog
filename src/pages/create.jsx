@@ -1,5 +1,4 @@
-import { useState, useReducer, useContext} from "react"
-import { UserInfoContext } from "../Context/ContextUserInfo";
+import { useState, useReducer} from "react"
 import { db, auth } from "../Firebase/config"
 import { collection, addDoc, Timestamp } from "firebase/firestore";
 import { useNavigate } from "react-router";
@@ -7,7 +6,6 @@ import { useNavigate } from "react-router";
 const Create = () => {
 
     const navigate = useNavigate()
-    const { userAuth } = useContext(UserInfoContext)
 
     const [ title, setTitle ] = useState("")
     const [ content, setContent ] = useState("")
@@ -78,7 +76,6 @@ const Create = () => {
                 createAt: Timestamp.now(),
                 userID : auth.currentUser.uid
             });
-
 
             dispatch({
                 type: "INSERT_DOC",

@@ -41,34 +41,34 @@ const Navibar = () => {
                 </li>
 
                 <li className={style.li}>
-                    <NavLink className={style.link} to='/'>HOME</NavLink>
+                    <NavLink className="link" to='/'>HOME</NavLink>
                 </li>
 
                 {userAuth &&
                     <li className={style.li}>
-                        <NavLink className={style.link} to='/dashboard'>DASHBOARD</NavLink>
+                        <NavLink className="link" to='/dashboard'>DASHBOARD</NavLink>
                     </li>
                 }
 
                 {userAuth &&
                     <li className={style.li}>
-                        <NavLink className={style.link} to='/create'>CREATE</NavLink>
+                        <NavLink className="link" to='/create'>CREATE</NavLink>
                     </li>
                 }
 
                 {!userAuth &&
                     <li className={style.li}>
-                        <NavLink className={style.link} to='/sign-in'>SIGN IN</NavLink>
+                        <NavLink className="link" to='/sign-in'>SIGN IN</NavLink>
                     </li>
                 }
 
                 <li className={style.li}>
-                    <NavLink className={style.link} to='/about'>ABOUT</NavLink>
+                    <NavLink className="link" to='/about'>ABOUT</NavLink>
                 </li>
 
                 {userAuth &&
                     <li className={style.li}>
-                        <NavLink className={style.link} to='/logout'>LOGOUT</NavLink>
+                        <NavLink className="link" to='/logout'>LOGOUT</NavLink>
                     </li>
                 }
             </ul>

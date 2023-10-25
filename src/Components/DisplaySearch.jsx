@@ -1,15 +1,18 @@
 import style  from './DisplaySearch.module.css'
 
+import { Link } from 'react-router-dom'
+
 const DisplaySearch = ({post}) => {
 
-    const {title, displayName, tagsArrays, image} = post
+    
+    const {title, tagsArrays, image} = post
 
     return (
         <div className={style.containerContent}>
             <h1>{title}</h1>
             <img className={style.containerImage} src={image} alt={title}/>
-            <p>create by {displayName}</p>
-            <button className={style.btnReadPost} >READ POST</button>
+            <p>create by</p>
+            <Link className='link' to={`/post/${post.uid}`}><button className={style.btnReadPost} >READ POST</button></Link>
             <div className={style.containerTags}>
                 {
                     tagsArrays.map(tag => {

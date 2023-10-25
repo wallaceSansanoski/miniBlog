@@ -6,13 +6,18 @@ import { db, auth } from '../Firebase/config'
 import style from './home.module.css'
 
 /// react component and  hooks
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext} from "react";
 import DisplaySearch from "../Components/DisplaySearch";
+
+///context
+import { UserInfoContext } from "../Context/ContextUserInfo";
 
 ///react router
 import { Link } from "react-router-dom";
 
 const Home = () => {
+
+    const { userAuth } = useContext(UserInfoContext)
 
     const [posts, setPosts] = useState([])
     const [loading, setLoading] = useState(false)
@@ -31,6 +36,7 @@ const Home = () => {
                     setPosts(
                         querySnapshot.docs.map(post => ({
                             uid: post.id,
+                            
                             ...post.data()
                         }))
                     )

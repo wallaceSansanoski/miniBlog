@@ -14,6 +14,7 @@ import SignUp from "./pages/signUp"
 import Logout from "./pages/logout"
 import Create from "./pages/create"
 import Dashboard from "./pages/dashboard"
+import SinglePost from "./pages/singlePost"
 
 //CSS
 import './App.css'
@@ -48,6 +49,7 @@ function App ()  {
                             <Route path="/signup" element={userAuth ? <Navigate to='/' /> : <SignUp />} />
                             <Route path="/dashboard" element={userAuth ? <Dashboard/> : <Navigate to={"/"}/>} />
                             <Route path="/about" element={<About />} />
+                            <Route path='/post/:id' element={<SinglePost/>}/>
                             <Route path="/logout" element={<Logout />} />
                             <Route path="*" element={<NotFound />} />
                         </Routes>
