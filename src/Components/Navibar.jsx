@@ -6,7 +6,7 @@ import HanburguerMenu from './HanburgerMenu'
 
 const Navibar = () => {
 
-    const { userAuth } = useContext(UserInfoContext)
+    const  userAuth  = useContext(UserInfoContext)
 
     const [hamburgerToggle, setHamburguerToggle] = useState(false)
     const [iconCloseMenu, setIconCloseMenu] = useState(true)
@@ -20,10 +20,12 @@ const Navibar = () => {
 
     const handleClickOpenOrCloseMenu = () => {
 
+        const isScreemWidthMoreThan400px = window.screen.width >= 400
+
         setIconCloseMenu(!iconCloseMenu)
         setHamburguerToggle(!hamburgerToggle)
 
-        if(window.screen.width >= 400){
+        if(isScreemWidthMoreThan400px){
             setIconCloseMenu(true)
             return 
         }

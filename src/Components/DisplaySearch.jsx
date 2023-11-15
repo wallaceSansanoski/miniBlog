@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom'
 
 const DisplaySearch = ({post}) => {
 
-    
-    const {title, tagsArrays, image} = post
+    const { title, tagsArrays, image, userName } = post
+
 
     return (
         <div className={style.containerContent}>
             <h1>{title}</h1>
             <img className={style.containerImage} src={image} alt={title}/>
-            <p>create by</p>
+            <p>create by: <strong>{userName}</strong></p>
             <Link className='link' to={`/post/${post.uid}`}><button className={style.btnReadPost} >READ POST</button></Link>
             <div className={style.containerTags}>
                 {

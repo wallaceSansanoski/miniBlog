@@ -6,7 +6,7 @@ import style from './signIn.module.css'
 
 //firebase
 import {signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup} from "firebase/auth";
-import { auth } from '../Firebase/config'
+import { auth } from '../../Firebase/config'
 
 import { NavLink, useNavigate } from "react-router-dom";
 

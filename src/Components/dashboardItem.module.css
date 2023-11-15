@@ -10,6 +10,7 @@
 .btnActions{
     display: flex;
     align-items: center;
+    gap: 10px;
 }
 
 .btnAction{
@@ -26,6 +27,28 @@
     text-decoration: none;
     color: black;
     font-weight: bold;
+}
+.btnActionDanger{
+    width: 100px;
+    height: 30px;
+    background-color: transparent;
+    border: 1px solid black;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.btnActionDanger:hover{
+    background-color: red;
+}
+.btnAction:hover{
+    background-color: green;
 }
 
 @media  (max-width : 600px) {

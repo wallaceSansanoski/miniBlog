@@ -1,7 +1,7 @@
 import style from './signUp.module.css'
 
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../Firebase/config'
+import { auth } from '../../Firebase/config'
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router';

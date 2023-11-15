@@ -1,20 +1,39 @@
 import style from './dashboardItem.module.css'
-import { doc, deleteDoc } from "firebase/firestore";
-import { db } from '../Firebase/config'
+import { useNavigate } from 'react-router';
 
-const DashboardItem = ({posts})  => {
-    const handleDeletePost = async () => {
-        await deleteDoc(doc(db, "posts", posts.id));
+import useDeleteDoc from '../hooks/useDeleteDoc';
+
+const DashboardItem = ({filteredPostedByUser})  => {
+
+    const { id } = filteredPostedByUser
+    const { title } = filteredPostedByUser.data()
+    const { deletingDoc, state : stateDeleteDoc } = useDeleteDoc(id)
+
+    const navigate = useNavigate()
+    
+    const handleDeletePost = () => {
+        deletingDoc()
+    }
+
+    const handleUpdatePost = () => {
+        navigate(`/post/update/${id}`)
+    }
+
+    const handleReadPost = () => {
+        navigate(`/post/${id}`)
     }
 
     return (
         <div className={style.containerDashboardPosts}>
-            <p>{posts.data().title}</p>
+            <p>{title}</p>
             <div className={style.btnActions}>
-                <button className={style.btnAction}>UPDATE</button>
-                <button className={style.btnAction} onClick={handleDeletePost} >DELETE</button>
-                <button className={style.btnAction}>READ</button>
+                <button className={style.btnAction} onClick={handleUpdatePost}>UPDATE</button>
+                <button className={style.btnAction} onClick={handleReadPost} >READ</button>
+                <button className={style.btnActionDanger} onClick={handleDeletePost} >DELETE</button>
             </div>
+            {stateDeleteDoc.isDeleteDoc && (
+                <p className='sucessMessage'>POST DELETED</p>
+            )}
         </div>
     )
 }

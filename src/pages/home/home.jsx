@@ -1,55 +1,23 @@
-//firebase
-import { collection, query, onSnapshot, orderBy } from "firebase/firestore";
-import { db, auth } from '../Firebase/config'
-
-///css style
+//css style
 import style from './home.module.css'
 
 /// react component and  hooks
-import { useState, useEffect, useContext} from "react";
-import DisplaySearch from "../Components/DisplaySearch";
+import { useState} from "react";
+import DisplaySearch from "../../Components/DisplaySearch";
 
-///context
-import { UserInfoContext } from "../Context/ContextUserInfo";
+
+///hooks
+import { useFetchPosts } from '../../hooks/useFetchPosts'
 
 ///react router
 import { Link } from "react-router-dom";
 
 const Home = () => {
-
-    const { userAuth } = useContext(UserInfoContext)
-
-    const [posts, setPosts] = useState([])
-    const [loading, setLoading] = useState(false)
+    
     const [filteredPostes, setFilteredPosts] = useState([])
-    const [messageIfNotFoundPostFiltered, setMessageIfNotFoundPostFiltered ] = useState(true)
+    const [messageIfNotFoundPostFiltered, setMessageIfNotFoundPostFiltered ] = useState(false)
 
-    useEffect(() => {
-
-        async function fetchContent() {
-
-            setLoading(true)
-            const q = await query(collection(db, "posts"), orderBy('createAt'));
-
-            try {
-                await onSnapshot(q, (querySnapshot) => {
-                    setPosts(
-                        querySnapshot.docs.map(post => ({
-                            uid: post.id,
-                            
-                            ...post.data()
-                        }))
-                    )
-                    setLoading(false)
-                })
-
-            } catch (error) {
-                console.log(error)
-            }
-        }
-        fetchContent()
-    }, [])
-
+    const { posts, loading } = useFetchPosts()
 
     const handleSearchContent = (e) => {
         e.preventDefault()
@@ -61,13 +29,18 @@ const Home = () => {
         setFilteredPosts(hasPostFiltered)
 
         if(hasPostFiltered.length === 0) {
-            setMessageIfNotFoundPostFiltered(false)
+            setMessageIfNotFoundPostFiltered(true)
+            return 
         }
     }
 
     const handleClickMessageNotFoundPostFiltered = (e) => {
-        if(['SPAN','DIV', 'P'].includes(e.target.tagName)){
-            setMessageIfNotFoundPostFiltered(true)
+
+        const targetElement = e.target.tagName
+        const someElementWasClickedToCloseMessageBar = ['SPAN','DIV', 'P'].includes(targetElement)
+        
+        if(someElementWasClickedToCloseMessageBar){
+            setMessageIfNotFoundPostFiltered(false)
         }
     }
 
@@ -82,22 +55,18 @@ const Home = () => {
                         placeholder="LOOKING FOR SOMETHIGN ELSE"
                         onChange={() => {
                             setFilteredPosts([])
-                            setMessageIfNotFoundPostFiltered(true)
+                            setMessageIfNotFoundPostFiltered(false)
                         }}
                     ></input>
-                    <button className={style.buttonSearch} >SEARCH</button>
+                    <button className={style.buttonSearch}>SEARCH</button>
                 </form>
             </div>
-            {!messageIfNotFoundPostFiltered ?
+            {messageIfNotFoundPostFiltered &&
                 (
                     <div className={style.notFoundFilteredPost} onClick={handleClickMessageNotFoundPostFiltered}>
                         <span>x</span>
                         <p>NOT FOUND POST RELATE WITH SEARCH</p>
                     </div>
-                )
-                :
-                (
-                    ("")
                 )
             }
             {loading && <h2>LOADING...</h2>}
