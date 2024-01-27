@@ -1,13 +1,8 @@
-# React + Vite
+Mini blog created using react and firebase. 
+Lets share new ideas !!! 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-- ![Alt text]()
-- ![Alt text]()
-- ![Alt text]()
-- ![Alt text]()
-- ![Alt text]()
+- ![Alt text](https://github.com/wallaceSansanoski/miniBlog/blob/main/src/image/Capturar1.PNG)
+- ![Alt text](https://github.com/wallaceSansanoski/miniBlog/blob/main/src/image/Capturar2.PNG)
+- ![Alt text](https://github.com/wallaceSansanoski/miniBlog/blob/main/src/image/Capturar3.PNG)
+- ![Alt text](https://github.com/wallaceSansanoski/miniBlog/blob/main/src/image/Capturar4.PNG)
+- ![Alt text](https://github.com/wallaceSansanoski/miniBlog/blob/main/src/image/Capturar5.PNG)
