@@ -1,0 +1,26 @@
+.container{
+    max-width: 500px;
+    height: 83vh;
+    margin: 0 auto;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: left;
+   padding: 20px;
+
+}
+
+.h1 {
+    margin-bottom: 30px;
+}
+
+.usedFeatures{
+    margin-top: 50px;
+    color: #b5b5b5;
+}
+
+span{
+    font-size: 20px;
+    margin-top: 10px;
+    font-weight: bolder;
+}

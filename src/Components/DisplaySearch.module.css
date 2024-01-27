@@ -1,0 +1,64 @@
+.containerContent {
+    text-transform: capitalize;
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 40px;
+    background-color: #222831;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow:  7px 6px 28px 1px rgba(0, 0, 0, 0.24);
+}
+
+.containerContent:hover {
+    transform: scale(0.98);
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24)
+}
+
+.containerImage{
+    max-height: 300px;
+    max-width: 600px;
+    background-size: cover;
+    padding: 20px 0px;
+}
+
+.containerTags {
+    display: flex;
+    flex-direction: row;
+    margin: 20px 0px ;
+}
+.tag {
+    margin-right: 10px;
+    color: #f76342;
+}
+
+.containerContent::after {
+    content: '';
+    margin: 0 auto;
+    width: 150px;
+    height: 1px ;
+    background-color: #eeeeee;
+}
+
+.btnReadPost {
+    width: 100px;
+    height: 30px;
+    background-color: #27bc58;
+    font-size: 15px;
+    margin-top: 30px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #eeeeee;
+    font-weight: bold;
+    border: none;
+}
+
+@media (min-width : 400px){
+    .containerContent::after {
+        width: 300px;
+    }
+}

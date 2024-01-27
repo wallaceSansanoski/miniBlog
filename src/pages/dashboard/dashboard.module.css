@@ -1,0 +1,30 @@
+.cointainerDashboard {
+    max-width: 900px;
+    min-height: 83vh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+.subTitlle {
+    margin-top: 50px;
+}
+
+.titleAndAction{
+    margin-top: 20px;
+    width: 100%;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
+}
+
+@media (max-width : 500px ) {
+    .cointainerDashboard {
+        margin: 0px;
+    }
+}

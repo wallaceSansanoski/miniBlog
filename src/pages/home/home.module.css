@@ -1,0 +1,89 @@
+.containerShowContent {
+    max-width: 600px;
+    min-height: 83vh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.searchContainer{
+    margin: 30px 0 30px 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    background-color: #222831;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.inputSearch{
+    margin: 0px;
+    max-height: 29px;
+    border-radius: 10px;
+    padding-left: 10px;
+    width: 75%;
+    background-color: #eeeeee;
+
+}
+
+.inputSearch::placeholder{
+    padding-left: 5px;
+    color: #f76342;
+}
+
+.buttonSearch {
+    width: 100px;
+    height: 30px;
+    background-color: #393e46;
+    border: 1px solid black;
+    font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+}
+.formSearch{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin:0;
+    width: 100%;
+}
+.containerNotFoundPost{
+    margin-top: 40px;
+}
+
+.notFoundFilteredPost{
+    position: relative;
+    background-color:#f76342;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    font-size: 13px;
+}
+
+.notFoundFilteredPost > span {
+    position: absolute;
+    margin: 0px;
+    padding: 0;
+    top: 0px;
+    right: 10px;
+}
+
+@media (max-width: 400px) {
+   .formSearch{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+   }
+   .inputSearch{
+    width: 95%;
+   }
+}

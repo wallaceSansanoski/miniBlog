@@ -1,0 +1,67 @@
+.containerSignIn {
+    width: 600px;
+    flex-grow: 1;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.access {
+    width: 80%;
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+    text-transform: uppercase;
+}
+.google, .createAccont {
+    color: #eeee;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.google:hover , .createAccont:hover {
+    transform: scale(0.98);
+}
+
+.input {
+    background-color: transparent;
+    opacity: 0.7;
+    margin-top: 10px;
+}
+
+.input::placeholder {
+    color:#f76342 ;
+    opacity: 0.6;
+}
+
+.label {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.icon {
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+}
+
+@media(max-width: 450px) {
+    .containerSignIn {
+        width: 370px;
+        flex-grow: 1;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    
+    }
+    .input {
+        width: 100%;
+        opacity: 0.7;
+    }
+}

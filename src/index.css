@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0px;
+    font-family: 'Space Grotesk', sans-serif;
+}
+body {
+    height: 100vh;
+}
+ #root{
+    height: 100vh;
+ }
+
+
+img {
+    width: 100%;
+}
+
+/* form style */
+
+form {
+    width: 75%;
+    /* margin: 0 auto; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+input {
+    outline: none;
+    border: none;
+    border-bottom: 1px black solid;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+textarea::placeholder {
+    padding: 10px;
+}
+
+label {
+    font-weight: bold;
+    font-size: 25px;
+    margin: 12px 0px ;
+    text-align: start;
+    text-transform: uppercase;
+}
+input::placeholder {
+    font-size: 15px;
+}
+
+.btn {
+    width: 100px;
+    height: 30px;
+    background-color: #27bc58;
+    font-size: 15px;
+    margin-top: 30px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #eeeeee;
+    font-weight: bold;
+    border: none;
+    text-transform: uppercase;
+}
+
+.warningMessage {
+    background-color: #ff6161;
+    max-width: 50%;
+    margin:  0 auto;
+    margin-top: 40px;
+    font-size: 20px;
+    padding: 10px;
+    border: none;
+    color: #eeeeee;
+}
+.sucessMessage {
+    background-color: #009f00;
+    max-width: 50%;
+    margin:  0 auto;
+    margin-top: 40px;
+    font-size: 20px;
+    padding: 10px;
+    border: none;
+    color: #eeeeee;
+}
+p{
+    text-transform: uppercase;
+    color: #eeeeee;
+}
+
+.link {
+    
+    color: #eeeeee;
+    text-decoration: none;
+    margin: 0px ;
+}
+
+h1{
+    text-transform: uppercase;
+    color: #eeeeee;
+}
+
+@media(max-width: 450px) {
+    .warningMessage {
+        background-color: #ff6161;
+        max-width: 50%;
+        margin:  0 auto;
+        margin-top: 40px;
+        font-size: 10px;
+        padding: 10px;
+        border: none;
+        color: #eeeeee;
+    }
+    .sucessMessage {
+        background-color: #009f00;
+        max-width: 50%;
+        margin:  0 auto;
+        margin-top: 40px;
+        font-size: 10px;
+        padding: 10px;
+        border: none;
+        color: #eeeeee;
+    }
+}

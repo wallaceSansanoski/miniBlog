@@ -1,0 +1,71 @@
+.containerShowContent{
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+}
+.containerContent{
+    background-color: #222831;
+    margin: 20px ;
+    padding: 30px ;
+    border-radius: 10px;
+}
+.content {
+    margin-top: 40px;
+    font-size: 20px;
+    text-transform: none;
+}
+.containerImageTitle{
+    max-height: 300px;
+    max-width: 600px;
+    background-size: cover;
+    padding: 20px 0px;
+}
+
+.containerImageContext{
+    padding-top: 20px;
+    max-height: 400px;
+    max-width: 400px;
+    object-fit: fill;
+}
+
+.containerTags {
+    display: flex;
+    flex-direction: row;
+    margin: 20px 0px ;
+}
+.tag {
+    margin-right: 10px;
+    color: #f76342;
+}
+
+.backHome {
+    width: 100px;
+    height: 30px;
+    background-color: #27bc58;
+    font-size: 15px;
+    margin-top: 30px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #eeeeee;
+    font-weight: bold;
+    border: none;
+}
+
+
+@media (max-width : 400px){
+   
+    .content{
+        font-size: 15px;
+    }
+    .tag{
+        font-size: 15px;
+    }
+    .createdBy {
+        font-size: 15px;
+    }
+}
